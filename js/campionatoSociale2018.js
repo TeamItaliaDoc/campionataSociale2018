@@ -1,4 +1,4 @@
-var elimiati = ["danieletar", "never_walk_alone", "vincenzovanaria", "pysse", "miki1701", "aracine", "JBG12618", "nr051162", "lieissvi", "mastertom2040"];
+var elimiati = ["danieletar", "never_walk_alone", "vincenzovanaria", "pysse", "miki1701", "aracine", "jbg12618", "nr051162", "lieissvi", "mastertom2040"];
 var posizione = {"N": 0,"punti" : 0, "pari" : 0}
 var okAvatar = false;
 
