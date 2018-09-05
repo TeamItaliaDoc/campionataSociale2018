@@ -1,6 +1,6 @@
 //METTERE SEMPRE MINUSCOLO
-var elimiati = ["danieletar", "never_walk_alone", "vincenzovanaria", "pysse", "miki1701", "aracine", "jbg12618", "nr051162", "lieissvi", "mastertom2040"];
-var posizione = {"N": 0,"punti" : 0, "pari" : 0}
+var elimiati = ["danieletar", "never_walk_alone", "miki1701", "aracine", "jbg12618", "nr051162", "lieissvi", "mastertom2040"];
+var posizione = {"N": 0, "pari" : 0,"oldPunti" : 0, "oldVinte" : 0, "oldPerse" : 0, "oldNPartite" : 0}
 var okAvatar = false;
 
 CAMPIONATO = {
@@ -34,7 +34,7 @@ CAMPIONATO = {
         stgironi += ',{"index": "21", "nome": "campionato-sociale-team-italia-doc-2018-girone-21", "descrizione" : "21", "inizio" : "28/08/2018", "fine" : "", "coefficiente" : "1.28", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
         stgironi += ',{"index": "22", "nome": "campionato-sociale-team-italia-doc-2018-girone-22", "descrizione" : "22", "inizio" : "31/08/2018", "fine" : "", "coefficiente" : "1.42", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
         stgironi += ',{"index": "23", "nome": "campionato-sociale-team-italia-doc-2018-girone-23", "descrizione" : "23", "inizio" : "03/09/2018", "fine" : "", "coefficiente" : "1.06", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        //stgironi += ',{"index": "24", "nome": "campionato-sociale-team-italia-doc-2018-girone-24", "descrizione" : "24", "inizio" : "", "fine" : "", "coefficiente" : "1.", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "24", "nome": "campionato-sociale-team-italia-doc-2018-girone-24", "descrizione" : "24", "inizio" : "04/09/2018", "fine" : "", "coefficiente" : "0.90", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
         //stgironi += ',{"index": "", "nome": "campionato-sociale-team-italia-doc-2018-girone-", "descrizione" : "", "inizio" : "", "fine" : "", "coefficiente" : "1.", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
         stgironi += ']}';
 
@@ -144,7 +144,7 @@ CAMPIONATO = {
         //Se non ho trovato giocatore lo aggiungo
         if (!CAMPIONATO.giocatori[risultato.username.toLowerCase()])
         {
-            CAMPIONATO.creaGiocatore(risultato.username.toLowerCase());
+            CAMPIONATO.creaGiocatore(risultato.username);
         };
         //Aggiorno sempre elo
         CAMPIONATO.giocatori[risultato.username.toLowerCase()].elo = elo;
@@ -191,11 +191,26 @@ CAMPIONATO = {
     {
         //Cerco giocatore con punteggio più alto
         var username = "";
-        var punteggio = -1;
+        var newPunteggio = -1;
+        var newVinte = -1;
+        var newPerse = -1;
+        var newNPartite = -1;
+        var giocatore;
         for (var i in CAMPIONATO.giocatori) {
-            if ((! CAMPIONATO.giocatori[i].stampato) && (CAMPIONATO.giocatori[i].punteggio > punteggio)) {
-                punteggio = CAMPIONATO.giocatori[i].punteggio;
-                username = i;
+            giocatore = CAMPIONATO.giocatori[i];
+            if (! giocatore.stampato) {
+                if  ((giocatore.punteggio > newPunteggio) |
+                     ((giocatore.punteggio == newPunteggio) & (giocatore.vinte > newVinte) ) |
+                     ((giocatore.punteggio == newPunteggio) & (giocatore.vinte == newVinte) & (giocatore.perse < newPerse)) |
+                     ((giocatore.punteggio == newPunteggio) & (giocatore.vinte == newVinte) & (giocatore.perse == newPerse) & (giocatore.vinte + giocatore.perse + giocatore.patte > newNPartite) )
+                    )          
+                {
+                    newPunteggio = giocatore.punteggio;
+                    newVinte = giocatore.vinte;
+                    newPerse = giocatore.perse;
+                    newNPartite = giocatore.vinte + giocatore.perse + giocatore.patte;
+                    username = i;
+                }
             }
         }
 
@@ -204,13 +219,19 @@ CAMPIONATO = {
             return false;
         }
 
-        //Aggiorno posizione
-        if (CAMPIONATO.giocatori[username].punteggio == posizione.punti)
+        //Controllo se sono pari
+        if ((newPunteggio == posizione.oldPunti) &
+            (newVinte == posizione.oldVinte) &
+            (newPerse == posizione.oldPerse) &
+            (newNPartite == posizione.oldNPartite))
         {
             posizione.pari ++;
         } else {
             posizione.N += posizione.pari + 1;
-            posizione.punti = CAMPIONATO.giocatori[username].punteggio;
+            posizione.oldPunti = newPunteggio;
+            posizione.oldVinte = newVinte;
+            posizione.oldPerse = newPerse;
+            posizione.oldNPartite = newNPartite;
             posizione.pari = 0;
         }
         //stampo riga    
@@ -223,7 +244,7 @@ CAMPIONATO = {
             '    </td>' +
             '    <td width=7px></td>' +
             '    <td><div>' +
-            '            <a class="username" href="' + CAMPIONATO.giocatori[username].id + '" target=”_blank”> ' + CAMPIONATO.giocatori[username].username + '</a>' +
+            '            <a class="username" href="' + CAMPIONATO.giocatori[username].id + '" target=”_blank”> ' + CAMPIONATO.giocatori[username].displayName + '</a>' +
             //'            <img class="classifica-country" src="' + CAMPIONATO.giocatori[username].country + '">' +
             '        </div> <div>  (' + CAMPIONATO.giocatori[username].elo + ') </div>' +
             '        </td>' +    
@@ -243,10 +264,12 @@ CAMPIONATO = {
             CAMPIONATO.giocatori[username].stampato = true;
             return true;
     },
-    creaGiocatore : function(username)
+    creaGiocatore : function(apiUsername)
     {
+        username = apiUsername.toLowerCase()
         CAMPIONATO.giocatori[username] = {};
         CAMPIONATO.giocatori[username].username = username;
+        CAMPIONATO.giocatori[username].displayName = apiUsername;
         CAMPIONATO.giocatori[username].id = 'https://www.chess.com/member/' + username;
         CAMPIONATO.giocatori[username].avatar = '';
         //CAMPIONATO.giocatori[username].country = '';
