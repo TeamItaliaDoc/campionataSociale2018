@@ -1,41 +1,40 @@
 //METTERE SEMPRE MINUSCOLO
-var elimiati = ["danieletar", "never_walk_alone", "miki1701", "aracine", "jbg12618", "nr051162", "lieissvi", "mastertom2040"];
+var elimiati = ["danieletar", "never_walk_alone", "miki1701", "aracine", "jbg12618", "nr051162", "lieissvi", "mastertom2040", "costadeipirati"];
 var posizione = {"N": 0, "pari" : 0,"oldPunti" : 0, "oldVinte" : 0, "oldPerse" : 0, "oldNPartite" : 0}
-var okAvatar = false;
 
 CAMPIONATO = {
     gironi: {},
     giocatori: [],
+    scriviTabelleRun: false,
 
     inizializzaGironi: function()
     { 
         stgironi = '{"girone": [';
-        stgironi += '{"index": "1", "nome": "campionato-sociale-team-italia-doc-girone-1", "descrizione" : "1", "inizio" : "20/07/2018", "fine" : "", "coefficiente" : "1.41", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        //stgironi += ',{"index": "2", "nome": "campionato-sociale-team-italia-doc-girone-2", "descrizione" : "2", "inizio" : "20/07/2018", "fine" : "", "coefficiente" : "1.34", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "2", "nome": "campionato-sociale-team-italia-doc-girone-2", "descrizione" : "2", "inizio" : "20/07/2018", "fine" : "", "coefficiente" : "1.51", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "3", "nome": "campionato-sociale-team-italia-doc-girone-3", "descrizione" : "3", "inizio" : "19/07/2018", "fine" : "06/08/2018", "coefficiente" : "1.36", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "4", "nome": "campionato-sociale-team-italia-doc-girone-4", "descrizione" : "4", "inizio" : "19/07/2018", "fine" : "", "coefficiente" : "1.37", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "5", "nome": "campionato-sociale-team-italia-doc-girone-5", "descrizione" : "5", "inizio" : "20/07/2018", "fine" : "", "coefficiente" : "1.18", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "6", "nome": "campionato-sociale-team-italia-doc-girone-6", "descrizione" : "6", "inizio" : "19/07/2018", "fine" : "", "coefficiente" : "1.10", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "7", "nome": "campionato-sociale-team-italia-doc-girone-7", "descrizione" : "7", "inizio" : "18/07/2018", "fine" : "12/08/2018", "coefficiente" : "1.24", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "8", "nome": "campionato-sociale-team-italia-doc-girone-8", "descrizione" : "8", "inizio" : "24/07/2018", "fine" : "", "coefficiente" : "1.45", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "9", "nome": "campionato-sociale-team-italia-doc-girone-9", "descrizione" : "9", "inizio" : "25/07/2018", "fine" : "", "coefficiente" : "1.35", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "10", "nome": "campionato-sociale-team-italia-doc-girone-10", "descrizione" : "10", "inizio" : "28/07/2018", "fine" : "", "coefficiente" : "1.06", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "11", "nome": "campionato-sociale-team-italia-doc-girone-11", "descrizione" : "11", "inizio" : "31/07/2018", "fine" : "", "coefficiente" : "1.33", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "12", "nome": "campionato-sociale-team-italia-doc-2018-girone-12", "descrizione" : "12", "inizio" : "06/08/2018", "fine" : "", "coefficiente" : "1.26", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "13", "nome": "campionato-sociale-team-italia-doc-2018-girone-13", "descrizione" : "13", "inizio" : "09/08/2018", "fine" : "", "coefficiente" : "1.39", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "14", "nome": "campionato-sociale-team-italia-doc-2018-girone-14", "descrizione" : "14", "inizio" : "11/08/2018", "fine" : "", "coefficiente" : "1.41", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "15", "nome": "campionato-sociale-team-italia-doc-2018-girone-15", "descrizione" : "15", "inizio" : "17/08/2018", "fine" : "", "coefficiente" : "1.05", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "16", "nome": "campionato-sociale-team-italia-doc-2018-girone-16", "descrizione" : "16", "inizio" : "19/08/2018", "fine" : "", "coefficiente" : "1.28", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "17", "nome": "campionato-sociale-team-italia-doc-girone-17", "descrizione" : "17", "inizio" : "23/08/2018", "fine" : "", "coefficiente" : "1.20", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "18", "nome": "campionato-sociale-team-italia-doc-girone-18", "descrizione" : "18", "inizio" : "23/08/2018", "fine" : "", "coefficiente" : "1.39", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "19", "nome": "campionato-sociale-team-italia-doc-2018-girone-19", "descrizione" : "19", "inizio" : "25/08/2018", "fine" : "", "coefficiente" : "1.35", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "20", "nome": "campionato-sociale-team-italia-doc-2018-girone-20", "descrizione" : "20", "inizio" : "27/08/2018", "fine" : "", "coefficiente" : "1.42", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "21", "nome": "campionato-sociale-team-italia-doc-2018-girone-21", "descrizione" : "21", "inizio" : "28/08/2018", "fine" : "", "coefficiente" : "1.28", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "22", "nome": "campionato-sociale-team-italia-doc-2018-girone-22", "descrizione" : "22", "inizio" : "31/08/2018", "fine" : "", "coefficiente" : "1.42", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "23", "nome": "campionato-sociale-team-italia-doc-2018-girone-23", "descrizione" : "23", "inizio" : "03/09/2018", "fine" : "", "coefficiente" : "1.06", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "24", "nome": "campionato-sociale-team-italia-doc-2018-girone-24", "descrizione" : "24", "inizio" : "04/09/2018", "fine" : "", "coefficiente" : "0.90", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
-        //stgironi += ',{"index": "", "nome": "campionato-sociale-team-italia-doc-2018-girone-", "descrizione" : "", "inizio" : "", "fine" : "", "coefficiente" : "1.", "partiteTernimate" : "0", "partiteTotali" : "0", "risultati" : "{}"}';
+        stgironi += '{"index": "1", "nome": "campionato-sociale-team-italia-doc-girone-1", "descrizione" : "1", "inizio" : "20/07/2018", "fine" : "", "coefficiente" : "1.41", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "2", "nome": "campionato-sociale-team-italia-doc-girone-2", "descrizione" : "2", "inizio" : "20/07/2018", "fine" : "", "coefficiente" : "1.51", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "3", "nome": "campionato-sociale-team-italia-doc-girone-3", "descrizione" : "3", "inizio" : "19/07/2018", "fine" : "06/08/2018", "coefficiente" : "1.36", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "4", "nome": "campionato-sociale-team-italia-doc-girone-4", "descrizione" : "4", "inizio" : "19/07/2018", "fine" : "", "coefficiente" : "1.37", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "5", "nome": "campionato-sociale-team-italia-doc-girone-5", "descrizione" : "5", "inizio" : "20/07/2018", "fine" : "", "coefficiente" : "1.18", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "6", "nome": "campionato-sociale-team-italia-doc-girone-6", "descrizione" : "6", "inizio" : "19/07/2018", "fine" : "", "coefficiente" : "1.10", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "7", "nome": "campionato-sociale-team-italia-doc-girone-7", "descrizione" : "7", "inizio" : "18/07/2018", "fine" : "12/08/2018", "coefficiente" : "1.24", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "8", "nome": "campionato-sociale-team-italia-doc-girone-8", "descrizione" : "8", "inizio" : "24/07/2018", "fine" : "", "coefficiente" : "1.45", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "9", "nome": "campionato-sociale-team-italia-doc-girone-9", "descrizione" : "9", "inizio" : "25/07/2018", "fine" : "", "coefficiente" : "1.35", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "10", "nome": "campionato-sociale-team-italia-doc-girone-10", "descrizione" : "10", "inizio" : "28/07/2018", "fine" : "", "coefficiente" : "1.06", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "11", "nome": "campionato-sociale-team-italia-doc-girone-11", "descrizione" : "11", "inizio" : "31/07/2018", "fine" : "", "coefficiente" : "1.33", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "12", "nome": "campionato-sociale-team-italia-doc-2018-girone-12", "descrizione" : "12", "inizio" : "06/08/2018", "fine" : "", "coefficiente" : "1.26", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "13", "nome": "campionato-sociale-team-italia-doc-2018-girone-13", "descrizione" : "13", "inizio" : "09/08/2018", "fine" : "", "coefficiente" : "1.39", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "14", "nome": "campionato-sociale-team-italia-doc-2018-girone-14", "descrizione" : "14", "inizio" : "11/08/2018", "fine" : "", "coefficiente" : "1.41", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "15", "nome": "campionato-sociale-team-italia-doc-2018-girone-15", "descrizione" : "15", "inizio" : "17/08/2018", "fine" : "", "coefficiente" : "1.05", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "16", "nome": "campionato-sociale-team-italia-doc-2018-girone-16", "descrizione" : "16", "inizio" : "19/08/2018", "fine" : "", "coefficiente" : "1.28", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "17", "nome": "campionato-sociale-team-italia-doc-girone-17", "descrizione" : "17", "inizio" : "23/08/2018", "fine" : "", "coefficiente" : "1.20", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "18", "nome": "campionato-sociale-team-italia-doc-girone-18", "descrizione" : "18", "inizio" : "23/08/2018", "fine" : "", "coefficiente" : "1.39", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "19", "nome": "campionato-sociale-team-italia-doc-2018-girone-19", "descrizione" : "19", "inizio" : "25/08/2018", "fine" : "", "coefficiente" : "1.35", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "20", "nome": "campionato-sociale-team-italia-doc-2018-girone-20", "descrizione" : "20", "inizio" : "27/08/2018", "fine" : "", "coefficiente" : "1.42", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "21", "nome": "campionato-sociale-team-italia-doc-2018-girone-21", "descrizione" : "21", "inizio" : "28/08/2018", "fine" : "", "coefficiente" : "1.28", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "22", "nome": "campionato-sociale-team-italia-doc-2018-girone-22", "descrizione" : "22", "inizio" : "31/08/2018", "fine" : "", "coefficiente" : "1.42", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "23", "nome": "campionato-sociale-team-italia-doc-2018-girone-23", "descrizione" : "23", "inizio" : "03/09/2018", "fine" : "", "coefficiente" : "1.06", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "24", "nome": "campionato-sociale-team-italia-doc-2018-girone-24", "descrizione" : "24", "inizio" : "04/09/2018", "fine" : "", "coefficiente" : "0.90", "partiteTernimate" : "0", "risultati" : "{}"}';
+        //stgironi += ',{"index": "", "nome": "campionato-sociale-team-italia-doc-2018-girone-", "descrizione" : "", "inizio" : "", "fine" : "", "coefficiente" : "1.", "partiteTernimate" : "0", "risultati" : "{}"}';
         stgironi += ']}';
 
         CAMPIONATO.gironi = JSON.parse(stgironi);   
@@ -43,8 +42,14 @@ CAMPIONATO = {
 //https://api.chess.com/pub/tournament/campionato-sociale-team-italia-doc-girone-3/1/1
         //Carico i dati di tuti i gironi
         for (var i in CAMPIONATO.gironi.girone) {
+            CAMPIONATO.caricaDati('https://api.chess.com/pub/tournament/' + CAMPIONATO.gironi.girone[i].nome + '/1/1');
+        }
+    },
+    caricaDati : function(url)
+    {
             //Leggo i dati del girone
-            $.getJSON('https://api.chess.com/pub/tournament/' + CAMPIONATO.gironi.girone[i].nome + '/1/1',function(dataGirone){
+            $.getJSON(url,function(dataGirone){
+                console.log('carico dati: ' + this);
                 //Carico dati
                 for (var iGirone in CAMPIONATO.gironi.girone) {
                     if ('https://api.chess.com/pub/tournament/' + CAMPIONATO.gironi.girone[iGirone].nome == dataGirone.games[0].tournament)
@@ -60,12 +65,15 @@ CAMPIONATO = {
                 }
                 //Tutti i gironi caricati
                 CAMPIONATO.calcolaClassifica();
-            })
-            //Attendo altrimenti si potrebbe piantare
-            setTimeout(500);
-        }
-    },
+            }).error(function(jqXhr, textStatus, error) {
+                console.log('-------- CARICA DATI ERRORE ---------------');
+                console.log('-------- CARICA DATI ERRORE ---------------');
+                console.log('-------- CARICA DATI ERRORE ---------------');
+                //è andato in errore ricarico i dati
+                CAMPIONATO.caricaDati(this.url);    
+            });
 
+    },
     calcolaClassifica: function()
     {
         var elo = 0;
@@ -96,8 +104,6 @@ CAMPIONATO = {
                         CAMPIONATO.setPunti(CAMPIONATO.gironi.girone[i].risultati.games[iGames].black, elo, i);
                     }
                 }
-                //Aggiorno partite del torneo
-                CAMPIONATO.gironi.girone[i].partiteTotali ++;
             }
         }
 
@@ -110,32 +116,40 @@ CAMPIONATO = {
         //Cerco il primo giocatore di cui non so ancora il avatar
         //  Potrebbe essere andata in erore l'api di ricerca profilo
         for (var username in CAMPIONATO.giocatori) {
-            if (! CAMPIONATO.giocatori[username].avatar) {
-                //Cerco rating
-                $.getJSON('https://api.chess.com/pub/player/' + username,function(dataAvatar){
-                    if (dataAvatar.avatar) {
-                        CAMPIONATO.giocatori[dataAvatar.username.toLowerCase()].avatar = dataAvatar.avatar;
-                    } else {
-                        CAMPIONATO.giocatori[dataAvatar.username.toLowerCase()].avatar = "https://betacssjs.chesscomfiles.com/bundles/web/images/user-image.152ee336.svg ";
-                    }
-                    //Se non ho caricato tuti gli avatar esengo ancora la funzione
-                    for (var username in CAMPIONATO.giocatori) {
-                        if (! CAMPIONATO.giocatori[username].avatar) {
-                            CAMPIONATO.getAvatar();
-                            return;
-                        }
-                    }
-                    //Finito calcolo. Scrivo i risultati 
-                    if (! okAvatar)
-                    {
-                        okAvatar = true;   
-                        CAMPIONATO.scriviTabelle();
-                    }
-                })
-                //Ho eseguito il getJSON devo uscire dalla funzione
-                return;
-            }
+                //Cerco avatar
+                CAMPIONATO.getAvatarUrl('https://api.chess.com/pub/player/' + username);
         }    
+    },
+    getAvatarUrl: function(url)
+    {
+        //Eseguo funzione per ricercare un avatar
+        $.getJSON(url,function(dataAvatar){
+            if (dataAvatar.avatar) {
+                CAMPIONATO.giocatori[dataAvatar.username.toLowerCase()].avatar = dataAvatar.avatar;
+            } else {
+                CAMPIONATO.giocatori[dataAvatar.username.toLowerCase()].avatar = "https://betacssjs.chesscomfiles.com/bundles/web/images/user-image.152ee336.svg ";
+            }
+            //Se non ho caricato tuti gli avatar esengo ancora la funzione
+            for (var username in CAMPIONATO.giocatori) {
+                if (! CAMPIONATO.giocatori[username].avatar) {
+                    return;
+                }
+            }
+            //Finito calcolo. Scrivo i risultati 
+            //   Controllo se è già partita la fase di scrittura
+            //      se arrivano contemporaneamente più caricamenti potrebbe succedere
+            if (! CAMPIONATO.scriviTabelleRun)
+            {
+                CAMPIONATO.scriviTabelleRun = true;
+                CAMPIONATO.scriviTabelle();
+            }
+        }).error(function(jqXhr, textStatus, error) {
+            console.log('-------- GET AVATAR ERRORE ---------------');
+            console.log('-------- GET AVATAR ERRORE ---------------');
+            //è andato in errore ricarico i dati
+            CAMPIONATO.getAvatarUrl(this.url);    
+        });
+
     },
     setPunti : function(risultato, elo, index) {
         //Se eliminato esco
@@ -171,20 +185,23 @@ CAMPIONATO = {
     },
     scriviTabelle: function()
     {
+        console.log('inizio scriviTabelle')
         //Tabella classifica
         while (CAMPIONATO.scriviGiocatore());
 
 
         //Tabella gironi
         for (var i in CAMPIONATO.gironi.girone) {
+            console.log('inizio scriviTabelle; ' + CAMPIONATO.gironi.girone[i].nome)
             //Se ho terminato tutte le partite scrivo in verde
             var colore = "";
-            if (CAMPIONATO.gironi.girone[i].partiteTernimate == CAMPIONATO.gironi.girone[i].partiteTotali)
+            if (CAMPIONATO.gironi.girone[i].partiteTernimate == 30)
                 colore = 'style="color:green!important"';
             $("#gironi").append('<tr  ' + colore + ' class="gironi-giocatori"> <td class="gironi-col1"><a class="username" href="https://www.chess.com/tournament/' + CAMPIONATO.gironi.girone[i].nome + '/pairings/" target=”_blank”> #' +
             CAMPIONATO.gironi.girone[i].descrizione + '</a></td><td class="gironi-col">' + CAMPIONATO.gironi.girone[i].inizio + '</td> <td class="gironi-col">' + CAMPIONATO.gironi.girone[i].fine + '</td> ' +
-            '<td class="gironi-col">' + CAMPIONATO.gironi.girone[i].coefficiente + '</td> <td class="gironi-col">' + CAMPIONATO.gironi.girone[i].partiteTernimate + ' / ' +  CAMPIONATO.gironi.girone[i].partiteTotali + '</td> </tr>');
+            '<td class="gironi-col">' + CAMPIONATO.gironi.girone[i].coefficiente + '</td> <td class="gironi-col">' + CAMPIONATO.gironi.girone[i].partiteTernimate + ' / 30</td> </tr>');
         }
+        console.log('fine scriviTabelle')
     }
     ,
     scriviGiocatore: function()
