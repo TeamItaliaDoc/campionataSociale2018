@@ -1,6 +1,9 @@
 //METTERE SEMPRE MINUSCOLO
-var elimiati = ["danieletar", "never_walk_alone", "miki1701", "aracine", "jbg12618", "nr051162", "lieissvi", "mastertom2040", "costadeipirati","Ricci888"];
-var posizione = {"N": 0, "pari" : 0,"oldPunti" : 0, "oldVinte" : 0, "oldPerse" : 0, "oldNPartite" : 0}
+//METTERE SEMPRE MINUSCOLO
+//METTERE SEMPRE MINUSCOLO
+//METTERE SEMPRE MINUSCOLO
+var elimiati = ["danieletar", "never_walk_alone", "miki1701", "aracine", "jbg12618", "nr051162", "lieissvi", "mastertom2040", "costadeipirati","ricci888"];
+var posizione = {"N": 0, "fasciaB" : 0, "fasciaC" : 0, "pari" : 0,"oldPunti" : 0, "oldVinte" : 0, "oldPerse" : 0, "oldNPartite" : 0}
 
 CAMPIONATO = {
     gironi: {},
