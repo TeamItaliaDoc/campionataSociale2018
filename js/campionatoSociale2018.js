@@ -1,9 +1,12 @@
+﻿//METTERE SEMPRE MINUSCOLO
 //METTERE SEMPRE MINUSCOLO
 //METTERE SEMPRE MINUSCOLO
 //METTERE SEMPRE MINUSCOLO
-//METTERE SEMPRE MINUSCOLO
-var elimiati = ["danieletar", "never_walk_alone", "miki1701", "aracine", "jbg12618", "nr051162", "lieissvi", "mastertom2040", "costadeipirati","ricci888"];
+var elimiati = ["danieletar", "never_walk_alone", "miki1701", "aracine", "jbg12618", "nr051162", "lieissvi", "mastertom2040", "costadeipirati","ricci888",
+	"procellaria_fabio_61","procellaria_61-it"];
 var posizione = {"N": 0, "fasciaB" : 0, "fasciaC" : 0, "pari" : 0,"oldPunti" : 0, "oldVinte" : 0, "oldPerse" : 0, "oldNPartite" : 0}
+var fineTorneo = new Date("2019-01-01"); 
+
 
 CAMPIONATO = {
     gironi: {},
@@ -108,31 +111,39 @@ CAMPIONATO = {
 
             //Per tutte le partite
             for (var iGames in CAMPIONATO.gironi.girone[i].risultati.games) {
-                //Se non definita turn la partia è ancora finita
-                if (! CAMPIONATO.gironi.girone[i].risultati.games[iGames].turn) {
-                    //Aggiorno partite finite
-                    CAMPIONATO.gironi.girone[i].partiteTernimate ++;
-                    //Aggiorno punti bianco
-                    //Calcolo punteggio se sono state fatte più di tre mosse.
-                    var mosseOK = true; 
-                    png = CAMPIONATO.gironi.girone[i].risultati.games[iGames].pgn;
-                    if (png.indexOf('4.') > -1)
-                        mosseOk = true
-                    else
-                        mosseOk = false;
-                    png = png.substring(png.indexOf('WhiteElo')+10);
-                    elo = png.substring(0, png.indexOf('"'));
-                    CAMPIONATO.setPunti(CAMPIONATO.gironi.girone[i].risultati.games[iGames].white, elo, i, mosseOk);
-                    //Aggiorno punti nero
-                    png = CAMPIONATO.gironi.girone[i].risultati.games[iGames].pgn;
-                    if (png.indexOf('3.') > -1)
-                        mosseOk = true
-                    else
-                        mosseOk = false;
-                    png = png.substring(png.indexOf('BlackElo')+10);
-                    elo = png.substring(0, png.indexOf('"'));
-                    CAMPIONATO.setPunti(CAMPIONATO.gironi.girone[i].risultati.games[iGames].black, elo, i, mosseOk);
-                }
+                //Se non definita end_time la partia non è finita
+                //    e non ha su
+                if (! CAMPIONATO.gironi.girone[i].risultati.games[iGames].end_time )
+                    continue; 
+                
+                //controllo se non ha superato la data di fine torneo
+                var myObj = $.parseJSON('{"date_created":"' + CAMPIONATO.gironi.girone[i].risultati.games[iGames].end_time + '"}'),
+                myDate = new Date(1000*myObj.date_created);
+                if (myDate > fineTorneo)
+                   continue;    
+                
+                //Aggiorno partite finite
+                CAMPIONATO.gironi.girone[i].partiteTernimate ++;
+                //Aggiorno punti bianco
+                //Calcolo punteggio se sono state fatte più di tre mosse.
+                var mosseOK = true; 
+                png = CAMPIONATO.gironi.girone[i].risultati.games[iGames].pgn;
+                if (png.indexOf('4.') > -1)
+                    mosseOk = true
+                else
+                    mosseOk = false;
+                png = png.substring(png.indexOf('WhiteElo')+10);
+                elo = png.substring(0, png.indexOf('"'));
+                CAMPIONATO.setPunti(CAMPIONATO.gironi.girone[i].risultati.games[iGames].white, elo, i, mosseOk);
+                //Aggiorno punti nero
+                png = CAMPIONATO.gironi.girone[i].risultati.games[iGames].pgn;
+                if (png.indexOf('3.') > -1)
+                    mosseOk = true
+                else
+                    mosseOk = false;
+                png = png.substring(png.indexOf('BlackElo')+10);
+                elo = png.substring(0, png.indexOf('"'));
+                CAMPIONATO.setPunti(CAMPIONATO.gironi.girone[i].risultati.games[iGames].black, elo, i, mosseOk);
             }
         }
 
