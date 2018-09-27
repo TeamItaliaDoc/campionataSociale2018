@@ -3,7 +3,7 @@
 //METTERE SEMPRE MINUSCOLO
 //METTERE SEMPRE MINUSCOLO
 var elimiati = ["danieletar", "never_walk_alone", "miki1701", "aracine", "jbg12618", "nr051162", "lieissvi", "mastertom2040", "costadeipirati","ricci888",
-	"procellaria_fabio_61","procellaria_61-it"];
+	"procellaria_fabio_61","procellaria_61-it", "lamicoditenerife-x", "vesevus"];
 var posizione = {"N": 0, "fasciaB" : 0, "fasciaC" : 0, "pari" : 0,"oldPunti" : 0, "oldVinte" : 0, "oldPerse" : 0, "oldNPartite" : 0}
 var fineTorneo = new Date("2019-01-01"); 
 
@@ -50,6 +50,7 @@ CAMPIONATO = {
         stgironi += ',{"index": "32", "nome": "campionato-sociale-team-italia-doc-2018-girone-32", "descrizione" : "32", "inizio" : "21/09/2018", "fine" : "", "coefficiente" : "1.40", "partiteTernimate" : "0", "risultati" : "{}"}';
         stgironi += ',{"index": "33", "nome": "campionato-sociale-team-italia-doc-2018-girone-33", "descrizione" : "33", "inizio" : "22/09/2018", "fine" : "", "coefficiente" : "1.28", "partiteTernimate" : "0", "risultati" : "{}"}';
         stgironi += ',{"index": "34", "nome": "campionato-sociale-team-italia-doc-2018-girone-34", "descrizione" : "34", "inizio" : "25/09/2018", "fine" : "", "coefficiente" : "1.21", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "35", "nome": "campionato-sociale-team-italia-doc-2018-girone-35", "descrizione" : "35", "inizio" : "26/09/2018", "fine" : "", "coefficiente" : "1.40", "partiteTernimate" : "0", "risultati" : "{}"}';
         //stgironi += ',{"index": "", "nome": "campionato-sociale-team-italia-doc-2018-girone-", "descrizione" : "", "inizio" : "", "fine" : "", "coefficiente" : "1.", "partiteTernimate" : "0", "risultati" : "{}"}';
         stgironi += ']}';
 
