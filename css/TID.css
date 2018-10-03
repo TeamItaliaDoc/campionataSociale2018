@@ -70,69 +70,41 @@
 }
 
 .classifica-col1 {
-    width:80px;
+    width:50px;
     text-align:center;
 }   
-.classifica-col1SEP {
-    width:10px;
-}   
 .classifica-col2 {
-    width:220px;
+    width:300px;
     text-align:left;
 }   
 .classifica-col3 {
-    width:120px;
+    width:150px;
     text-align:left;
 }   
 .classifica-col4 {
-    width:130px;
+    width:150px;
     text-align:left;
 }   
 .classifica-col5 {
-    width:90px;
+    width:20px;
     text-align:left;
 }   
 .classifica-col6 {
-    width:10px;
-    text-align:left;
-}   
-.classifica-col7 {
-    width:290px;
+    width:280px;
     text-align:left;
 }   
 .classifica-avatar {
     width:35px;
     height:35px;
 }   
-.classifica-cartellino {
-    width:25px;
-    height:35px;
-    margin-left: 15px;
-}   
 .classifica-country {
     width:16px;
     height:16px;
 }
-.classifica-assoluto1 {
-    margin-top:5px;
-    width:50px;
-    height:70px;
-}   
-.classifica-assoluto2 {
-    margin-top:5px;
-    width:50px;
-    height:50px;
-}   
-.classifica-podio {
-    margin-top:5px;
-    width:40px;
-    height:40px;
-    font-size: 15px;
-}   
 .game-win {
     color: #4b7636;
 }
-.game-lost {
+.game-loss {
     color: #e6912c;
 }
 .game-draw {
@@ -200,7 +172,7 @@
 }   
 .gironi-col1 {
     width:80px;
-    text-align:center;    
+    text-align:center;
 }
 
 /*  Powered */
