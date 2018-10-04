@@ -53,7 +53,8 @@ CAMPIONATO = {
         stgironi += ',{"index": "35", "nome": "campionato-sociale-team-italia-doc-2018-girone-35", "descrizione" : "35", "inizio" : "26/09/2018", "fine" : "", "coefficiente" : "1.40", "partiteTernimate" : "0", "risultati" : "{}"}';
         stgironi += ',{"index": "36", "nome": "campionato-sociale-team-italia-doc-2018-girone-36", "descrizione" : "36", "inizio" : "30/09/2018", "fine" : "", "coefficiente" : "1.52", "partiteTernimate" : "0", "risultati" : "{}"}';
         stgironi += ',{"index": "37", "nome": "campionato-sociale-team-italia-doc-2018-girone-37", "descrizione" : "37", "inizio" : "03/10/2018", "fine" : "", "coefficiente" : "1.26", "partiteTernimate" : "0", "risultati" : "{}"}';
-        stgironi += ',{"index": "38", "nome": "campionato-sociale-team-italia-doc-2018-girone-38", "descrizione" : "38", "inizio" : "02/109/2018", "fine" : "", "coefficiente" : "1.39", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "38", "nome": "campionato-sociale-team-italia-doc-2018-girone-38", "descrizione" : "38", "inizio" : "02/10/2018", "fine" : "", "coefficiente" : "1.39", "partiteTernimate" : "0", "risultati" : "{}"}';
+        stgironi += ',{"index": "39", "nome": "campionato-sociale-team-italia-doc-2018-girone-39", "descrizione" : "39", "inizio" : "04/10/2018", "fine" : "", "coefficiente" : "1.35", "partiteTernimate" : "0", "risultati" : "{}"}';
         //stgironi += ',{"index": "", "nome": "campionato-sociale-team-italia-doc-2018-girone-", "descrizione" : "", "inizio" : "", "fine" : "", "coefficiente" : "1.", "partiteTernimate" : "0", "risultati" : "{}"}';
         stgironi += ']}';
 
