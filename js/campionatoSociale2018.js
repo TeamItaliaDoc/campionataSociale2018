@@ -429,22 +429,21 @@ CAMPIONATO = {
                     stPosizione = '<img class="classifica-assoluto2" src="img/assoluto2.png"><BR>' + stPosizione + ' Assoluto';
                 if (posizione.N == 3)
                     stPosizione = '<img class="classifica-podio" src="img/assoluto3.png"><BR>' + stPosizione + ' Assoluto';
-                /*if (posizione.N == 4)
+                if (posizione.N == 4)
                     stPosizione = '<img class="classifica-podio" src="img/assoluto4.png"><BR>' + stPosizione + ' Assoluto';
                 if (posizione.N == 5)
                 stPosizione = '<img class="classifica-podio" src="img/assoluto5.png"><BR>' + stPosizione + ' Assoluto';
-                */
-                //Fascia B
+                //Fascia B - U1600
                 if (CAMPIONATO.giocatori[username].elo > 1300 &  CAMPIONATO.giocatori[username].elo < 1601)
                 {
-                    if (posizione.N > 5 & posizione.fasciaB < 2)
+                    if (posizione.N > 5 & posizione.fasciaB < 4)
                         stPosizione = '<img class="classifica-podio" src="img/fasciaB' + posizione.fasciaB + '.png">';
                     stPosizione += '<span style="font-size: 10px;"><BR>#' + posizione.fasciaB + ' U1600</span>';
                 }
-                //Fascia C
+                //Fascia C - U1300
                 if (CAMPIONATO.giocatori[username].elo < 1301)
                 { 
-                    if (posizione.N > 5 & posizione.fasciaC  < 2)
+                    if (posizione.N > 5 & posizione.fasciaC  < 4)
                         stPosizione = '<img class="classifica-podio" src="img/fasciaC' + posizione.fasciaC + '.png">';
                     stPosizione += '<span style="font-size: 10px;"><br>#' + posizione.fasciaC + ' U1300</span>';
                 }
