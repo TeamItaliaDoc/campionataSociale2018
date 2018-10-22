@@ -88,7 +88,7 @@ CAMPIONATO = {
     CAMPIONATO.gironi.girone[36-1].partiteTerminate = '14';   
     CAMPIONATO.gironi.girone[36-1].giocatori = ["vittobet","kremont","fungiat","mlamdmar","sanner60"];   
 
-     //Giocatori dei gironi che vanno in errore
+     //Giocatori dei gironi che vanno in errore 
     //--------- GIRONE 9
     username = 'roberto_boe';
     CAMPIONATO.giocatori[username] = {};
