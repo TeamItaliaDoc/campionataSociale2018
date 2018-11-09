@@ -197,7 +197,7 @@ username = 'fungiat';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"usern
                 //Non è da caricare, aggiungo il girone ai giocatori
                 for (var iGiocatore in CAMPIONATO.gironi.girone[i].giocatori) {
                     var username = CAMPIONATO.gironi.girone[i].giocatori[iGiocatore];
-                    CAMPIONATO.giocatori[username].gironi = '<a href="https://www.chess.com/tournament/' + CAMPIONATO.gironi.girone[i].nome + '/pairings/" target=”_blank”>' + CAMPIONATO.gironi.girone[i].index + '</a> - ';
+                    CAMPIONATO.giocatori[username].gironi += '<a href="https://www.chess.com/tournament/' + CAMPIONATO.gironi.girone[i].nome + '/pairings/" target=”_blank”>' + CAMPIONATO.gironi.girone[i].index + '</a> - ';
 
                 }
             }
@@ -345,7 +345,7 @@ username = 'fungiat';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"usern
             }
 
             //---------
-           // console.log(i + ' - ' + CAMPIONATO.giocatori['implacabile'].punteggio + ' - ' + CAMPIONATO.giocatori['implacabile'].vinte + ' - ' + CAMPIONATO.giocatori['implacabile'].perse + ' - ' + CAMPIONATO.giocatori['implacabile'].patte);
+            console.log(i + ' - ' + CAMPIONATO.giocatori['saurosol'].punteggio + ' - ' + CAMPIONATO.giocatori['saurosol'].vinte + ' - ' + CAMPIONATO.giocatori['saurosol'].perse + ' - ' + CAMPIONATO.giocatori['saurosol'].patte);
         }
 
         //Ricerco avatar
