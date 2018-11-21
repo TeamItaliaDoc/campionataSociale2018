@@ -803,6 +803,16 @@ username = 'fungiat';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"usern
                             '<span class="game-lost" style="font-size: 12px;">' +  CAMPIONATO.giocatori[username].nTimeoutLost + ' - '  + CAMPIONATO.giocatori[username].nTimeoutLost3 + ' L</span>';
             }
         }
+
+        //ordino gironi
+        var arGironi;
+        var stGironi = '';
+        arGironi = CAMPIONATO.giocatori[username].gironi.substr(0, CAMPIONATO.giocatori[username].gironi.length -2).split(' - ');
+        arGironi.sort(CAMPIONATO.compareGironi);
+        for (var i in arGironi) {
+            stGironi += arGironi[i] + ' - ';
+        }
+
        //stampo riga    
         $("#giocatori").append('<tr class="classifica-giocatori">' +
             '<td class="classifica-col1">' + stPosizione + '</td>' +  
@@ -826,7 +836,7 @@ username = 'fungiat';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"usern
             '</td>' +
             '<td class="classifica-col5">' +stTimeout + '</td>' +
             '<td class="classifica-col6"></td>' +
-            '<td class="classifica-col7">' + CAMPIONATO.giocatori[username].gironi.substr(0, CAMPIONATO.giocatori[username].gironi.length -2)  + '</td>' +
+            '<td class="classifica-col7">' + stGironi.substr(0, stGironi.length - 2) + '</td>' +
             '</tr>'
             );
 
@@ -925,6 +935,12 @@ username = 'fungiat';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"usern
             //NB NB SE IL CARICAMENTO NON VA A BUON FINE VIENE RIPETUTO NELLA FUNZIONE getAvatarUrl
         })    
 
+    },
+    compareGironi : function (a,b) {
+        if (parseInt(a.substring(a.indexOf('>')+1, a.substring(1,a.length-1).indexOf('<')+1)) < parseInt(b.substring(b.indexOf('>')+1, b.substring(1,b.length-1).indexOf('<')+1)))
+            return  -1;
+        else
+            return  1;
     }
  }
 
