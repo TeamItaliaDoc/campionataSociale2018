@@ -401,55 +401,39 @@ username = 'fungiat';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"usern
     },
     getElo : function()
     {
-        //Se un giocatore è presente solo in gironi che non riesco a caricare imposto elo attualeù
-        // NB NB Devo farlo uno alla volta perchè la funzione non restituisce lo username
+        today = new Date(); //??
+        console.log('Inizio getElo: '  + today.getMinutes() + ':' + today.getSeconds() + '-' + today.getMilliseconds());  //?????????
+        //Cerco l'avatar per tutti i giocatori
         for (var username in CAMPIONATO.giocatori) {
-            if (CAMPIONATO.giocatori[username].elo == 0) {
-                //Cerco elo
-                getEloUsername = username;
-                $.getJSON('https://api.chess.com/pub/player/' + getEloUsername + '/stats',function(data){
-                    if (data.chess_daily)
-                        CAMPIONATO.giocatori[getEloUsername].elo = data.chess_daily.last.rating;
-                    else
-                    CAMPIONATO.giocatori[getEloUsername].elo = 1200;    
-                    //Rilancio funzione per riesiguire il controllo
-                    CAMPIONATO.getElo();    
-
-                }).error(function(jqXhr, textStatus, error) {
-                    //è andato in errore ricarico i dati
-                    CAMPIONATO.getElo();    
-                });
-                
-                //Esco ricerco un solo elo
-                return;
-            }
-        }
-        //Se non c'erano elo da ricercare scrivo la tabella
-        CAMPIONATO.scriviTabelle();
+                //Cerco avatar
+                CAMPIONATO.getEloUrl('https://api.chess.com/pub/player/' + username + '/stats');
+        }    
     },
-    getEloUrl: function(username, url)
+    getEloUrl: function(url)
     {
-        //Eseguo funzione per ricercare l'elo per i giocatori dei gironi precaricati
+        //Eseguo funzione per ricercare un avatar
         $.getJSON(url,function(data){
-            CAMPIONATO.giocatori[username].elo = data.chess_daily.last.rating;
-
-            //Se non ho caricato tuti gli elo esco
+            var username = ''
+            username = this.url.substr(33, this.url.length-39);
+            if (data.chess_daily)
+                CAMPIONATO.giocatori[username].elo = data.chess_daily.last.rating;
+            else
+                CAMPIONATO.giocatori[username].elo = 1200;    
+                
+            //Se non ho caricato tuti gli elo  esengo ancora la funzione
             for (var username in CAMPIONATO.giocatori) {
-                if (CAMPIONATO.giocatori[username].elo == 0) {
+                if (! CAMPIONATO.giocatori[username].elo) {
                     return;
                 }
             }
-            //Finito calcolo. Scrivo i risultati 
-            //   Controllo se è già partita la fase di scrittura
-            //      se arrivano contemporaneamente più caricamenti potrebbe succedere
-            if (! CAMPIONATO.scriviTabelleRun)
-            {
-                CAMPIONATO.scriviTabelleRun = true;
-                CAMPIONATO.scriviTabelle();
-            }
+
+            //Se non ci sono elo da ricercare scrivo la tabella
+            CAMPIONATO.scriviTabelle();
+
+
         }).error(function(jqXhr, textStatus, error) {
             //è andato in errore ricarico i dati
-            CAMPIONATO.getEloUrl(this.username,this.url);    
+            CAMPIONATO.getEloUrl(this.url);    
         });
 
     },
