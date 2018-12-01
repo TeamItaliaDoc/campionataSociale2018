@@ -225,54 +225,6 @@ username = 'fungiat';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"usern
             }).error(function(jqXhr, textStatus, error) {
                 //è andato in errore ricarico i dati
                 CAMPIONATO.caricaDati(this.url);    
-                /* ???????????????????????????
-                //è andato in errore ricarico i dati
-                console.log('--------------');
-                console.log(jqXhr);
-                console.log('--------------');
-                console.log(textStatus);
-                console.log('-------------- error');
-                console.log(error);
-                console.log('-------------- textStatus');
-                console.log(jqXhr.textStatus);
-                console.log('-------------- statusCode');
-                console.log(jqXhr.statusCode);
-                console.log('-------------- readyState');
-                console.log(jqXhr.readyState);
-                console.log('-------------- responseJson');
-                console.log(jqXhr.responseJSON);
-                console.log('-------------- reponseText');
-                console.log(jqXhr.reponseText);
-                //Se responseJSON non è valorizzato solo se il torneo esiste    
-                if (! jqXhr.responseJSON)
-                {
-                    console.log('ERRORE ricarico dati: ' + this.url);
-                    CAMPIONATO.caricaDati(this.url);    
-                } else {
-                    console.log('ERRORE Girone non valido');
-                    //Il girone non esiste. Lo cancello
-                    for (var i in CAMPIONATO.gironi.girone) {
-                        if ('https://api.chess.com/pub/tournament/' + CAMPIONATO.gironi.girone[i].nome + '/1/1' == this.url)
-                        {
-                            console.log('ASSEGNO -1 a: ' + i)
-                            CAMPIONATO.gironi.girone[i].avviato = false;
-                        }
-                    }
-
-                    //Se ho caricato tutti i dati calcolo la classifica
-                    for (var i in CAMPIONATO.gironi.girone) {
-                        if (! CAMPIONATO.gironi.girone[i].risultati.games & CAMPIONATO.gironi.girone[i].avviato) {
-                            console.log('errore. caricadati. girone non caricato esco: ' + i);
-                            return;
-                        }
-                    }
-                    console.log('errore, caricamento terminato. calcolo classifica');
-                    //Tutti i gironi caricati
-                    CAMPIONATO.calcolaClassifica();
-                    //nuovo calcolo pari
-                    //exit;   
-                }
-                //???????????? */    
             });
 
     },
@@ -344,8 +296,6 @@ username = 'fungiat';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"usern
                 CAMPIONATO.setPunti(CAMPIONATO.gironi.girone[i].risultati.games[iGames].black, elo, i, mosseOk, end_time, CAMPIONATO.gironi.girone[i].risultati.games[iGames].white);
             }
 
-            //---------
-            //console.log(i + ' - ' + CAMPIONATO.giocatori['saurosol'].punteggio + ' - ' + CAMPIONATO.giocatori['saurosol'].vinte + ' - ' + CAMPIONATO.giocatori['saurosol'].perse + ' - ' + CAMPIONATO.giocatori['saurosol'].patte);
         }
 
         //Ricerco avatar
@@ -401,8 +351,6 @@ username = 'fungiat';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"usern
     },
     getElo : function()
     {
-        today = new Date(); //??
-        console.log('Inizio getElo: '  + today.getMinutes() + ':' + today.getSeconds() + '-' + today.getMilliseconds());  //?????????
         //Cerco l'avatar per tutti i giocatori
         for (var username in CAMPIONATO.giocatori) {
                 //Cerco avatar
@@ -427,7 +375,11 @@ username = 'fungiat';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"usern
                 }
             }
 
+            if (CAMPIONATO.scriviTabelleRun)
+                return;
+                
             //Se non ci sono elo da ricercare scrivo la tabella
+            CAMPIONATO.scriviTabelleRun = true;
             CAMPIONATO.scriviTabelle();
 
 
